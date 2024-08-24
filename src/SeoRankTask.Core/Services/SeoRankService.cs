@@ -6,16 +6,16 @@ using Microsoft.Extensions.Logging;
 
 namespace CeoRankTask.Core.Services;
 
-public class CeoRankService : ICeoRankService
+public class SeoRankService : ISeoRankService
 {
-    private readonly ILogger<CeoRankService> _logger;
-    private readonly IValidator<CeoRankRequestDto> _ceoRankRequestDtoValidator;
+    private readonly ILogger<SeoRankService> _logger;
+    private readonly IValidator<SeoRankRequestDto> _ceoRankRequestDtoValidator;
     private readonly IGoogleExtractor _googleExtractor;
     private readonly IScraperRepository _scraperRepository;
 
-    public CeoRankService(
-        ILogger<CeoRankService> logger,
-        IValidator<CeoRankRequestDto> ceoRankRequestValidator,
+    public SeoRankService(
+        ILogger<SeoRankService> logger,
+        IValidator<SeoRankRequestDto> ceoRankRequestValidator,
         IGoogleExtractor googleExtractor,
         IScraperRepository scraperRepository)
     {
@@ -25,7 +25,7 @@ public class CeoRankService : ICeoRankService
         _scraperRepository = scraperRepository;
     }
 
-    public async Task<IEnumerable<int>> Check(CeoRankRequestDto request)
+    public async Task<IEnumerable<int>> Check(SeoRankRequestDto request)
     {
         ValidationResult result = await _ceoRankRequestDtoValidator.ValidateAsync(request);
 

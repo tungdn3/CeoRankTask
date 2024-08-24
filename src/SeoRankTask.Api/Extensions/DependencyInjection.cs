@@ -12,7 +12,7 @@ public static class DependencyInjection
     {
         services.AddValidatorsFromAssemblyContaining<CeoRankRequestDtoValidator>();
         services.AddSingleton<IGoogleExtractor, GoogleExtractor>();
-        services.AddScoped<ICeoRankService, CeoRankService>();
+        services.AddScoped<ISeoRankService, SeoRankService>();
 
         return services;
     }

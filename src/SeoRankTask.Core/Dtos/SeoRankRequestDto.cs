@@ -2,14 +2,14 @@
 
 namespace CeoRankTask.Core.Dtos;
 
-public class CeoRankRequestDto
+public class SeoRankRequestDto
 {
     public string Keyword { get; set; } = string.Empty;
 
     public string Url { get; set; } = string.Empty;
 }
 
-public class CeoRankRequestDtoValidator : AbstractValidator<CeoRankRequestDto>
+public class CeoRankRequestDtoValidator : AbstractValidator<SeoRankRequestDto>
 {
     private const string UrlOptionalSchemeReg = @"^(http:\/\/|https:\/\/)?([a-zA-Z0-9-_]+\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+(\.[a-zA-Z]{2,11})";
 

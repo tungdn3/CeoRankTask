@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CeoRankTask.Core.Services;
 
-public interface ICeoRankService
+public interface ISeoRankService
 {
-    Task<IEnumerable<int>> Check(CeoRankRequestDto request);
+    Task<IEnumerable<int>> Check(SeoRankRequestDto request);
 }

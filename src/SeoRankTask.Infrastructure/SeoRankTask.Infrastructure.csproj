@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CeoRankTask.Core\CeoRankTask.Core.csproj" />
+    <ProjectReference Include="..\SeoRankTask.Core\SeoRankTask.Core.csproj" />
   </ItemGroup>
 
 </Project>

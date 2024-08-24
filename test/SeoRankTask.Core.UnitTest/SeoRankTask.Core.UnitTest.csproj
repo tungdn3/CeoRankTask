@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CeoRankTask.Core\CeoRankTask.Core.csproj" />
+    <ProjectReference Include="..\..\src\SeoRankTask.Core\SeoRankTask.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,12 +6,12 @@ namespace CeoRankTask.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class CeoRanksController : ControllerBase
+public class SeoRanksController : ControllerBase
 {
-    private readonly ILogger<CeoRanksController> _logger;
-    private readonly ICeoRankService _ceoRankService;
+    private readonly ILogger<SeoRanksController> _logger;
+    private readonly ISeoRankService _ceoRankService;
 
-    public CeoRanksController(ILogger<CeoRanksController> logger, ICeoRankService ceoRankService)
+    public SeoRanksController(ILogger<SeoRanksController> logger, ISeoRankService ceoRankService)
     {
         _logger = logger;
         _ceoRankService = ceoRankService;
@@ -20,7 +20,7 @@ public class CeoRanksController : ControllerBase
     // Command style, not RESTful
     [HttpPost("check", Name = "CheckCEORank")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IEnumerable<int>> CheckCeoRank([FromBody] CeoRankRequestDto request)
+    public async Task<IEnumerable<int>> CheckCeoRank([FromBody] SeoRankRequestDto request)
     {
         IEnumerable<int> result = await _ceoRankService.Check(request);
         return result;

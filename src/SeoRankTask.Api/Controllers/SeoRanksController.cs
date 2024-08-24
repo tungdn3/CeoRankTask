@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CeoRankTask.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("seo-ranks")]
 public class SeoRanksController : ControllerBase
 {
     private readonly ILogger<SeoRanksController> _logger;

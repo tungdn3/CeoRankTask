@@ -30,6 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseExceptionHandler("/error");
 app.UseCors("AllowFE");
 
 // To avoid any TLS certificate issues on the recruiter's machine

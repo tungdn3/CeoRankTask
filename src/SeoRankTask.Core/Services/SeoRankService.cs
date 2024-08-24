@@ -31,7 +31,7 @@ public class SeoRankService : ISeoRankService
 
         if (!result.IsValid)
         {
-            throw new ValidationException(result.Errors);
+            throw new Exceptions.ValidationException(result.Errors);
         }
 
         string rawHtml = await _scraperRepository.ScrapeGoogle(request.Keyword);

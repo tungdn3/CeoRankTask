@@ -16,7 +16,10 @@
         v-model="url"
         label="Your website *"
         lazy-rules
-        :rules="[(val) => (val && val.length > 0) || 'Please type something']"
+        :rules="[
+          (val) => (val && val.length > 0) || 'Please type something',
+          (val) => val.match(urlRegex) || 'Please provide a valid URL',
+        ]"
       />
 
       <div class="">
@@ -58,6 +61,8 @@ const keyword = ref<string>('land registry search');
 const url = ref<string>('www.infotrack.co.uk');
 const isLoading = ref<boolean>(false);
 const result = ref<string>('');
+const urlRegex =
+  /^(http:\/\/|https:\/\/)?([a-zA-Z0-9-_]+\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+(\.[a-zA-Z]{2,11})/g;
 
 async function onSubmit() {
   isLoading.value = true;

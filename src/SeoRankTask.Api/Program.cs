@@ -1,4 +1,5 @@
 using SeoRankTask.Api.Extensions;
+using SeoRankTask.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,4 +41,23 @@ app.UseCors("AllowFE");
 
 app.MapControllers();
 
+CreateDbIfNotExists(app);
+
 app.Run();
+
+// Local testing only
+static void CreateDbIfNotExists(IHost host)
+{
+    using var scope = host.Services.CreateScope();
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<SeoRankContext>();
+        DbInitializer.Initialize(context);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred creating the DB.");
+    }
+}

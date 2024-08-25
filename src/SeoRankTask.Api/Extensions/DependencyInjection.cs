@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using Polly;
 using SeoRankTask.Core.Dtos;
@@ -13,10 +14,12 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddValidatorsFromAssemblyContaining<CeoRankRequestDtoValidator>();
-        services.AddSingleton<IExtractor, GoogleExtractor>();
-        services.AddSingleton<IExtractor, BingExtractor>();
-        services.AddScoped<ISeoRankService, SeoRankService>();
+        services
+            .AddValidatorsFromAssemblyContaining<CeoRankRequestDtoValidator>()
+            .AddSingleton<IExtractor, GoogleExtractor>()
+            .AddSingleton<IExtractor, BingExtractor>()
+            .AddScoped<ISeoRankService, SeoRankService>()
+            .AddScoped<IWatchListService, WatchListService>();
 
         return services;
     }
@@ -25,7 +28,8 @@ public static class DependencyInjection
     {
         services
             .AddGoogleClient(configuration)
-            .AddBingClient(configuration);
+            .AddBingClient(configuration)
+            .AddSeoRankDbContext(configuration);
 
         return services;
     }
@@ -60,6 +64,17 @@ public static class DependencyInjection
             .AddTransientHttpErrorPolicy(policyBuilder => policyBuilder.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
         services.AddSingleton<IScraperRepository, BingClient>();
+        return services;
+    }
+
+    private static IServiceCollection AddSeoRankDbContext(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<SeoRankContext>(options =>
+            options.UseSqlServer(configuration.GetConnectionString("SqlExpressConnection")));
+
+        services.AddDatabaseDeveloperPageExceptionFilter();
+        services.AddScoped<IWatchListRepository, WatchListRepository>();
+
         return services;
     }
 }

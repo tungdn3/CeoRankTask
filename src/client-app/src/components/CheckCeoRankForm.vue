@@ -22,7 +22,14 @@
         ]"
       />
 
-      <div class="">
+      <q-select
+        filled
+        v-model="searchEngine"
+        :options="searchEngines"
+        label="Search Engine"
+      />
+
+      <div class="q-mt-md">
         <q-btn
           label="Submit"
           type="submit"
@@ -59,10 +66,18 @@ const $q = useQuasar();
 
 const keyword = ref<string>('land registry search');
 const url = ref<string>('www.infotrack.co.uk');
+const searchEngine = ref<string>('Google');
+
 const isLoading = ref<boolean>(false);
 const result = ref<string>('');
 const urlRegex =
   /^(http:\/\/|https:\/\/)?([a-zA-Z0-9-_]+\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+(\.[a-zA-Z]{2,11})/g;
+
+const searchEngines = ['Google', 'Bing'];
+const searchEngineMap = new Map([
+  ['Google', 0],
+  ['Bing', 1],
+]);
 
 async function onSubmit() {
   isLoading.value = true;
@@ -71,6 +86,7 @@ async function onSubmit() {
     const response = await api.post<number[]>('seo-ranks/check', {
       keyword: keyword.value,
       url: url.value,
+      searchEngine: searchEngineMap.get(searchEngine.value),
     });
     result.value = response.data.length > 0 ? response.data.join(', ') : '0';
   } catch (error) {
@@ -103,5 +119,6 @@ function onReset() {
   keyword.value = '';
   url.value = '';
   result.value = '';
+  searchEngine.value = 'Google';
 }
 </script>

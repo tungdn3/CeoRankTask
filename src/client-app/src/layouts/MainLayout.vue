@@ -16,12 +16,12 @@
           <q-item-section> Home </q-item-section>
         </q-item>
 
-        <!-- <q-item to="/watchlist" exact>
+        <q-item to="/watchlist" exact>
           <q-item-section avatar>
             <q-icon name="star" />
           </q-item-section>
           <q-item-section> Watchlist </q-item-section>
-        </q-item> -->
+        </q-item>
       </q-list>
     </q-drawer>
 

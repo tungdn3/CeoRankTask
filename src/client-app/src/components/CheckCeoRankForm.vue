@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="width: 100%">
+  <div style="width: 100%">
     <div class="text-h4 text-primary q-mb-lg">Check CEO Rank</div>
 
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-sm">

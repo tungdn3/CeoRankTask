@@ -7,6 +7,8 @@ namespace SeoRankTask.Core.Services;
 
 public class WatchListService : IWatchListService
 {
+    private const int DefaultPastDays = -15;
+
     private readonly IWatchListRepository _watchListRepository;
 
     public WatchListService(IWatchListRepository watchListRepository)
@@ -29,7 +31,7 @@ public class WatchListService : IWatchListService
 
     public async Task<IEnumerable<HistoricalRankDto>> GetHistoricalRanks(int id, DateTime? dateFrom)
     {
-        DateTime from = dateFrom.HasValue ? dateFrom.Value.Date : DateTime.UtcNow.AddDays(-30).Date;
+        DateTime from = dateFrom.HasValue ? dateFrom.Value.Date : DateTime.UtcNow.AddDays(DefaultPastDays).Date;
         List<HistoricalRank> items = await _watchListRepository.GetHistoricalRanks(id, from);
         // Todo: group by date -> select max
         return items.Select(x => x.ToDto());

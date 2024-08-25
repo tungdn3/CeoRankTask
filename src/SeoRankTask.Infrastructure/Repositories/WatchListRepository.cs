@@ -31,14 +31,25 @@ public class WatchListRepository : IWatchListRepository
         };
     }
 
+    public Task<List<WatchListItem>> GetAll()
+    {
+        return _context.WatchListItems.AsNoTracking().ToListAsync();
+    }
+
     public Task<List<HistoricalRank>> GetHistoricalRanks(int watchListItemId, DateTime from)
     {
         return _context.HistoricalRanks
             .AsNoTracking()
             .Where(x => x.WatchListItemId == watchListItemId && x.CheckedAt >= from)
-            
+
             // To support the demo, I have seeded data for the next month. Need to filter out.
             .Where(x => x.CheckedAt < DateTime.UtcNow)
             .ToListAsync();
+    }
+
+    public Task SaveHistoricalRank(HistoricalRank historicalRank)
+    {
+        _context.HistoricalRanks.Add(historicalRank);
+        return _context.SaveChangesAsync();
     }
 }

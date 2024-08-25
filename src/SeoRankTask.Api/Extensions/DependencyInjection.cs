@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using Polly;
+using SeoRankTask.Core.BackgroundServices;
 using SeoRankTask.Core.Dtos;
 using SeoRankTask.Core.Interfaces;
 using SeoRankTask.Core.Services;
@@ -20,6 +21,9 @@ public static class DependencyInjection
             .AddSingleton<IExtractor, BingExtractor>()
             .AddScoped<ISeoRankService, SeoRankService>()
             .AddScoped<IWatchListService, WatchListService>();
+
+        services
+            .AddHostedService<SeoRankCheckingTimerService>();
 
         return services;
     }

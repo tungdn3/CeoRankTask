@@ -33,7 +33,21 @@ public class WatchListService : IWatchListService
     {
         DateTime from = dateFrom.HasValue ? dateFrom.Value.Date : DateTime.UtcNow.AddDays(DefaultPastDays).Date;
         List<HistoricalRank> items = await _watchListRepository.GetHistoricalRanks(id, from);
-        // Todo: group by date -> select max
-        return items.Select(x => x.ToDto());
+        List<HistoricalRankDto> bestByDays = items
+            .GroupBy(x => x.CheckedAt.Date)
+            .Select(g =>
+            {
+                HistoricalRank best = g.OrderBy(x => x.Rank).First();
+                return new HistoricalRankDto
+                {
+                    Id = best.Id,
+                    CheckedAt = best.CheckedAt,
+                    Rank = best.Rank,
+                    WatchListItemId = best.WatchListItemId,
+                };
+            })
+            .ToList();
+
+        return bestByDays;
     }
 }

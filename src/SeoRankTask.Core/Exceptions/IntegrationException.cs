@@ -1,4 +1,4 @@
-﻿namespace CeoRankTask.Core.Exceptions;
+﻿namespace SeoRankTask.Core.Exceptions;
 
 public class IntegrationException : Exception
 {

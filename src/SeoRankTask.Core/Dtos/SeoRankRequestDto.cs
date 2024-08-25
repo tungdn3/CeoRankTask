@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using SeoRankTask.Core.Enums;
 
-namespace CeoRankTask.Core.Dtos;
+namespace SeoRankTask.Core.Dtos;
 
 public class SeoRankRequestDto
 {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 using SeoRankTask.Api.Models;
-using CeoRankTask.Core.Exceptions;
+using SeoRankTask.Core.Exceptions;
+using System.Net;
 
 namespace SeoRankTask.Api.Controllers;
 

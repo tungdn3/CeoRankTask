@@ -1,4 +1,4 @@
-using CeoRankTask.Api.Extensions;
+using SeoRankTask.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

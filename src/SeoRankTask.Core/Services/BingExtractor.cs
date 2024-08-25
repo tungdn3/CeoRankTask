@@ -1,8 +1,7 @@
 ﻿using SeoRankTask.Core.Enums;
-using System;
 using System.Text.RegularExpressions;
 
-namespace CeoRankTask.Core.Services;
+namespace SeoRankTask.Core.Services;
 
 public class BingExtractor : IExtractor
 {

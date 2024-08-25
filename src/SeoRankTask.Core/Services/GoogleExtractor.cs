@@ -1,7 +1,7 @@
 ﻿using SeoRankTask.Core.Enums;
 using System.Text.RegularExpressions;
 
-namespace CeoRankTask.Core.Services;
+namespace SeoRankTask.Core.Services;
 
 public class GoogleExtractor : IExtractor
 {

@@ -1,4 +1,4 @@
-namespace CeoRankTask.Core.UnitTest
+namespace SeoRankTask.Core.UnitTest
 {
     public class UnitTest1
     {

@@ -1,11 +1,11 @@
-﻿using CeoRankTask.Core.Dtos;
+﻿using SeoRankTask.Core.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CeoRankTask.Core.Services;
+namespace SeoRankTask.Core.Services;
 
 public interface ISeoRankService
 {

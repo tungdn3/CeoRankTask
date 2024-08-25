@@ -1,6 +1,6 @@
-@CeoRankTask.Api_HostAddress = http://localhost:5075
+@SeoRankTask.Api_HostAddress = http://localhost:5075
 
-GET {{CeoRankTask.Api_HostAddress}}/weatherforecast/
+GET {{SeoRankTask.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

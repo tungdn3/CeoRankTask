@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace CeoRankTask.Core.Exceptions;
+namespace SeoRankTask.Core.Exceptions;
 
 public class ValidationException : Exception
 {

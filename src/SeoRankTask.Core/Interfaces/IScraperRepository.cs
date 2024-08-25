@@ -1,6 +1,6 @@
 ﻿using SeoRankTask.Core.Enums;
 
-namespace CeoRankTask.Core.Interfaces;
+namespace SeoRankTask.Core.Interfaces;
 
 public interface IScraperRepository
 {

@@ -1,10 +1,10 @@
-﻿using CeoRankTask.Core.Dtos;
-using CeoRankTask.Core.Interfaces;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.Extensions.Logging;
+using SeoRankTask.Core.Dtos;
+using SeoRankTask.Core.Interfaces;
 
-namespace CeoRankTask.Core.Services;
+namespace SeoRankTask.Core.Services;
 
 public class SeoRankService : ISeoRankService
 {

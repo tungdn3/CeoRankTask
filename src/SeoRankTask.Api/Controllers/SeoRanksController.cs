@@ -1,8 +1,8 @@
-using CeoRankTask.Core.Dtos;
-using CeoRankTask.Core.Services;
 using Microsoft.AspNetCore.Mvc;
+using SeoRankTask.Core.Dtos;
+using SeoRankTask.Core.Services;
 
-namespace CeoRankTask.Api.Controllers;
+namespace SeoRankTask.Api.Controllers;
 
 [ApiController]
 [Route("seo-ranks")]

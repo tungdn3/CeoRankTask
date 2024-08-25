@@ -1,6 +1,6 @@
-﻿using CeoRankTask.Core.Exceptions;
-using CeoRankTask.Core.Interfaces;
-using SeoRankTask.Core.Enums;
+﻿using SeoRankTask.Core.Enums;
+using SeoRankTask.Core.Exceptions;
+using SeoRankTask.Core.Interfaces;
 
 namespace SeoRankTask.Infrastructure.Repositories;
 

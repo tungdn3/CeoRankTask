@@ -1,13 +1,13 @@
-﻿using CeoRankTask.Core.Dtos;
-using CeoRankTask.Core.Interfaces;
-using CeoRankTask.Core.Services;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.Net.Http.Headers;
 using Polly;
+using SeoRankTask.Core.Dtos;
+using SeoRankTask.Core.Interfaces;
+using SeoRankTask.Core.Services;
 using SeoRankTask.Infrastructure;
 using SeoRankTask.Infrastructure.Repositories;
 
-namespace CeoRankTask.Api.Extensions;
+namespace SeoRankTask.Api.Extensions;
 
 public static class DependencyInjection
 {

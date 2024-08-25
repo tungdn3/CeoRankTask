@@ -1,6 +1,6 @@
 ﻿using SeoRankTask.Core.Enums;
 
-namespace CeoRankTask.Core.Services;
+namespace SeoRankTask.Core.Services;
 
 public interface IExtractor
 {

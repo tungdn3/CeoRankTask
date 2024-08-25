@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%">
-    <div class="text-h4 text-primary q-mb-lg">Check CEO Rank</div>
+    <div class="text-h4 text-primary q-mb-lg">Check SEO Rank</div>
 
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-sm">
       <q-input

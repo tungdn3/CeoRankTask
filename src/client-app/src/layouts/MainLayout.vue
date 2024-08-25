@@ -3,7 +3,7 @@
     <q-header elevated :class="$q.dark.isActive ? 'bg-secondary' : 'bg-black'">
       <q-toolbar>
         <q-btn flat @click="toggleLeftDrawer" round dense icon="menu" />
-        <q-toolbar-title>CEO Rank</q-toolbar-title>
+        <q-toolbar-title>SEO Rank</q-toolbar-title>
       </q-toolbar>
     </q-header>
 

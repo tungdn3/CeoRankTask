@@ -1,11 +1,11 @@
 <template>
   <q-page class="row q-pa-md" style="max-width: 600px">
-    <CheckCeoRankForm />
+    <CheckSeoRankForm />
   </q-page>
 </template>
 
 <script setup lang="ts">
-import CheckCeoRankForm from 'components/CheckCeoRankForm.vue';
+import CheckSeoRankForm from 'components/CheckSeoRankForm.vue';
 
 defineOptions({
   name: 'IndexPage',

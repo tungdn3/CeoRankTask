@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SeoRankTask.Core.Enums;
 
 namespace CeoRankTask.Core.Interfaces;
 
 public interface IScraperRepository
 {
-    Task<string> ScrapeGoogle(string keyword);
+    SearchEngine SearchEngine { get; }
+
+    Task<string> Scrape(string keyword, int top);
 }

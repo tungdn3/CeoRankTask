@@ -8,21 +8,23 @@ namespace CeoRankTask.Core.Services;
 
 public class SeoRankService : ISeoRankService
 {
+    private const int Top = 100;
+
     private readonly ILogger<SeoRankService> _logger;
     private readonly IValidator<SeoRankRequestDto> _ceoRankRequestDtoValidator;
-    private readonly IGoogleExtractor _googleExtractor;
-    private readonly IScraperRepository _scraperRepository;
+    private readonly IEnumerable<IExtractor> _extractors;
+    private readonly IEnumerable<IScraperRepository> _scraperRepositories;
 
     public SeoRankService(
         ILogger<SeoRankService> logger,
         IValidator<SeoRankRequestDto> ceoRankRequestValidator,
-        IGoogleExtractor googleExtractor,
-        IScraperRepository scraperRepository)
+        IEnumerable<IExtractor> extractors,
+        IEnumerable<IScraperRepository> scraperRepositories)
     {
         _logger = logger;
         _ceoRankRequestDtoValidator = ceoRankRequestValidator;
-        _googleExtractor = googleExtractor;
-        _scraperRepository = scraperRepository;
+        _extractors = extractors;
+        _scraperRepositories = scraperRepositories;
     }
 
     public async Task<IEnumerable<int>> Check(SeoRankRequestDto request)
@@ -34,8 +36,11 @@ public class SeoRankService : ISeoRankService
             throw new Exceptions.ValidationException(result.Errors);
         }
 
-        string rawHtml = await _scraperRepository.ScrapeGoogle(request.Keyword);
-        List<string> urls = _googleExtractor.ExtractUrls(rawHtml);
+        IScraperRepository scraper = _scraperRepositories.First(x => x.SearchEngine == request.SearchEngine);
+        string rawHtml = await scraper.Scrape(request.Keyword, Top);
+
+        IExtractor extractor = _extractors.First(x => x.SearchEngine == request.SearchEngine);
+        List<string> urls = extractor.ExtractUrls(rawHtml);
 
         string baseUrl = GetBaseUrlWithoutTrailingSlash(request.Url);
 

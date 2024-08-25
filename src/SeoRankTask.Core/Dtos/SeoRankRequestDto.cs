@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using SeoRankTask.Core.Enums;
 
 namespace CeoRankTask.Core.Dtos;
 
@@ -7,6 +8,8 @@ public class SeoRankRequestDto
     public string Keyword { get; set; } = string.Empty;
 
     public string Url { get; set; } = string.Empty;
+
+    public SearchEngine SearchEngine { get; set; }
 }
 
 public class CeoRankRequestDtoValidator : AbstractValidator<SeoRankRequestDto>
@@ -15,11 +18,15 @@ public class CeoRankRequestDtoValidator : AbstractValidator<SeoRankRequestDto>
 
     public CeoRankRequestDtoValidator()
     {
-        RuleFor(x => x.Keyword).NotEmpty();
+        RuleFor(x => x.Keyword)
+            .NotEmpty();
 
         RuleFor(x => x.Url)
             .NotEmpty()
             .Matches(UrlOptionalSchemeReg)
                 .WithMessage("Url is not valid.");
+
+        RuleFor(x => x.SearchEngine)
+            .IsInEnum();
     }
 }

@@ -2,9 +2,9 @@
 using SeoRankTask.Core.Exceptions;
 using SeoRankTask.Core.Interfaces;
 
-namespace SeoRankTask.Infrastructure.Repositories;
+namespace SeoRankTask.Infrastructure.ScraperClients;
 
-public class BingClient : IScraperRepository
+public class BingClient : IScraperClient
 {
     private readonly IHttpClientFactory _httpClientFactory;
 

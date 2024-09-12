@@ -2,9 +2,9 @@
 using SeoRankTask.Core.Exceptions;
 using SeoRankTask.Core.Interfaces;
 
-namespace SeoRankTask.Infrastructure.Repositories;
+namespace SeoRankTask.Infrastructure.ScraperClients;
 
-public class GoogleClient : IScraperRepository
+public class GoogleClient : IScraperClient
 {
     private readonly IHttpClientFactory _httpClientFactory;
 

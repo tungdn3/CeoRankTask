@@ -9,20 +9,20 @@ namespace SeoRankTask.Api.Controllers;
 public class SeoRanksController : ControllerBase
 {
     private readonly ILogger<SeoRanksController> _logger;
-    private readonly ISeoRankService _ceoRankService;
+    private readonly ISeoRankService _seoRankService;
 
     public SeoRanksController(ILogger<SeoRanksController> logger, ISeoRankService ceoRankService)
     {
         _logger = logger;
-        _ceoRankService = ceoRankService;
+        _seoRankService = ceoRankService;
     }
 
     // Command style, not RESTful
     [HttpPost("check", Name = "CheckCEORank")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IEnumerable<int>> CheckCeoRank([FromBody] SeoRankRequestDto request)
+    public async Task<IEnumerable<int>> CheckSeoRank([FromBody] SeoRankRequestDto request)
     {
-        IEnumerable<int> result = await _ceoRankService.Check(request);
+        IEnumerable<int> result = await _seoRankService.Check(request);
         return result;
     }
 }

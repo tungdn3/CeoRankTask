@@ -8,6 +8,7 @@ using SeoRankTask.Core.Interfaces;
 using SeoRankTask.Core.Services;
 using SeoRankTask.Infrastructure;
 using SeoRankTask.Infrastructure.Repositories;
+using SeoRankTask.Infrastructure.ScraperClients;
 
 namespace SeoRankTask.Api.Extensions;
 
@@ -49,7 +50,7 @@ public static class DependencyInjection
             .AddTransientHttpErrorPolicy(policyBuilder => policyBuilder.RetryAsync(3))
             .AddTransientHttpErrorPolicy(policyBuilder => policyBuilder.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
-        services.AddSingleton<IScraperRepository, GoogleClient>();
+        services.AddSingleton<IScraperClient, GoogleClient>();
         return services;
     }
 
@@ -67,7 +68,7 @@ public static class DependencyInjection
             .AddTransientHttpErrorPolicy(policyBuilder => policyBuilder.RetryAsync(3))
             .AddTransientHttpErrorPolicy(policyBuilder => policyBuilder.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
-        services.AddSingleton<IScraperRepository, BingClient>();
+        services.AddSingleton<IScraperClient, BingClient>();
         return services;
     }
 

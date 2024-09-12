@@ -12,10 +12,10 @@ public class SeoRankServiceTest
 {
     private readonly ILogger<SeoRankService> _logger = new Logger<SeoRankService>(new NullLoggerFactory());
     private readonly CeoRankRequestDtoValidator _validator = new ();
-    private readonly Mock<IScraperRepository> _googleClientMock = new();
+    private readonly Mock<IScraperClient> _googleClientMock = new();
     private readonly Mock<IExtractor> _googleExtractorMock = new();
     private readonly IEnumerable<IExtractor> _extractors;
-    private readonly IEnumerable<IScraperRepository> _scraperRepositories;
+    private readonly IEnumerable<IScraperClient> _scraperClients;
 
     public SeoRankServiceTest()
     {
@@ -26,7 +26,7 @@ public class SeoRankServiceTest
         };
 
         _googleClientMock.Setup(x => x.SearchEngine).Returns(Enums.SearchEngine.Google);
-        _scraperRepositories = new List<IScraperRepository>
+        _scraperClients = new List<IScraperClient>
         {
             _googleClientMock.Object,
         };
@@ -59,7 +59,7 @@ public class SeoRankServiceTest
             _logger,
             _validator,
             _extractors,
-            _scraperRepositories);
+            _scraperClients);
 
         IEnumerable<int> ranks = await sut.Check(request);
 

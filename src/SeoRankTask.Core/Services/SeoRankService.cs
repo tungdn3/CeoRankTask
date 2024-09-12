@@ -11,32 +11,32 @@ public class SeoRankService : ISeoRankService
     private const int Top = 100;
 
     private readonly ILogger<SeoRankService> _logger;
-    private readonly IValidator<SeoRankRequestDto> _ceoRankRequestDtoValidator;
+    private readonly IValidator<SeoRankRequestDto> _seoRankRequestDtoValidator;
     private readonly IEnumerable<IExtractor> _extractors;
-    private readonly IEnumerable<IScraperRepository> _scraperRepositories;
+    private readonly IEnumerable<IScraperClient> _scraperClients;
 
     public SeoRankService(
         ILogger<SeoRankService> logger,
-        IValidator<SeoRankRequestDto> ceoRankRequestValidator,
+        IValidator<SeoRankRequestDto> seoRankRequestValidator,
         IEnumerable<IExtractor> extractors,
-        IEnumerable<IScraperRepository> scraperRepositories)
+        IEnumerable<IScraperClient> scraperClients)
     {
         _logger = logger;
-        _ceoRankRequestDtoValidator = ceoRankRequestValidator;
+        _seoRankRequestDtoValidator = seoRankRequestValidator;
         _extractors = extractors;
-        _scraperRepositories = scraperRepositories;
+        _scraperClients = scraperClients;
     }
 
     public async Task<IEnumerable<int>> Check(SeoRankRequestDto request)
     {
-        ValidationResult result = await _ceoRankRequestDtoValidator.ValidateAsync(request);
+        ValidationResult result = await _seoRankRequestDtoValidator.ValidateAsync(request);
 
         if (!result.IsValid)
         {
             throw new Exceptions.ValidationException(result.Errors);
         }
 
-        IScraperRepository scraper = _scraperRepositories.First(x => x.SearchEngine == request.SearchEngine);
+        IScraperClient scraper = _scraperClients.First(x => x.SearchEngine == request.SearchEngine);
         string rawHtml = await scraper.Scrape(request.Keyword, Top);
 
         IExtractor extractor = _extractors.First(x => x.SearchEngine == request.SearchEngine);

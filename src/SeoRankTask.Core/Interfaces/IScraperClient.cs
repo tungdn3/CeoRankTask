@@ -2,7 +2,7 @@
 
 namespace SeoRankTask.Core.Interfaces;
 
-public interface IScraperRepository
+public interface IScraperClient
 {
     SearchEngine SearchEngine { get; }
 
